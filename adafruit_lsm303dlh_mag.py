@@ -108,8 +108,11 @@ _GAUSS_TO_MICROTESLA       = 100.0        # Gauss to micro-Tesla multiplier
 
 
 class LSM303DLH_Mag:
-    """Driver for the LSM303DLH's 'magnetometer."""
+    """Driver for the Driver for the LSM303DLH's 'magnetometer.
 
+    :param busio.I2C i2c_bus: The I2C bus the LSM303DLH is connected to.
+
+    """
     # Class-level buffer for reading and writing data with the sensor.
     # This reduces memory allocations but means the code is not re-entrant or
     # thread safe!
@@ -124,7 +127,7 @@ class LSM303DLH_Mag:
         self._mag_rate = MAGRATE_0_7
 
     @property
-    def raw_magnetic(self):
+    def _raw_magnetic(self):
         """The raw magnetometer sensor values.
         A 3-tuple of X, Y, Z axis values that are 16-bit signed integers.
         """
@@ -137,7 +140,7 @@ class LSM303DLH_Mag:
         """The processed magnetometer sensor values.
         A 3-tuple of X, Y, Z axis values in microteslas that are signed floats.
         """
-        mag_x, mag_y, mag_z = self.raw_magnetic
+        mag_x, mag_y, mag_z = self._raw_magnetic
         return (mag_x / self._lsm303mag_gauss_lsb_xy * _GAUSS_TO_MICROTESLA,
                 mag_y / self._lsm303mag_gauss_lsb_xy * _GAUSS_TO_MICROTESLA,
                 mag_z / self._lsm303mag_gauss_lsb_z * _GAUSS_TO_MICROTESLA)
