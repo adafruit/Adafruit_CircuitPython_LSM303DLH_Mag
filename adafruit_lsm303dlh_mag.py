@@ -94,12 +94,12 @@ MAGGAIN_8_1                = const(0xE0)  # +/- 8.1
 # Magentometer rates
 MAGRATE_0_7                = const(0x00)  # 0.75 Hz
 MAGRATE_1_5                = const(0x01)  # 1.5 Hz
-MAGRATE_3_0                = const(0x62)  # 3.0 Hz
+MAGRATE_3_0                = const(0x02)  # 3.0 Hz
 MAGRATE_7_5                = const(0x03)  # 7.5 Hz
 MAGRATE_15                 = const(0x04)  # 15 Hz
 MAGRATE_30                 = const(0x05)  # 30 Hz
 MAGRATE_75                 = const(0x06)  # 75 Hz
-MAGRATE_220                = const(0x07)  # 200 Hz
+MAGRATE_220                = const(0x07)  # 220 Hz
 
 # Conversion constants
 _GRAVITY_STANDARD          = 9.80665      # Earth's gravity in m/s^2
