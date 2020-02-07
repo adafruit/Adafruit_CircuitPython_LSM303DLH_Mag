@@ -1,4 +1,4 @@
-""" Display compass heading data five times per second """
+""" Display compass heading data five times per second. """
 import time
 from math import atan2, degrees
 import board
