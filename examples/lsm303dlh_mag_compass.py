@@ -1,4 +1,4 @@
-""" Display compass heading data five times per second. """
+""" Display compass heading data five times per second """
 import time
 from math import atan2, degrees
 import board
@@ -17,7 +17,7 @@ def vector_2_degrees(x, y):
 
 
 def get_heading(_sensor):
-    magnet_x, magnet_y, magnet_z = _sensor.magnetic
+    magnet_x, magnet_y, _ = _sensor.magnetic
     return vector_2_degrees(magnet_x, magnet_y)
 
 
