@@ -9,4 +9,4 @@ sensor = adafruit_lsm303dlh_mag.LSM303DLH_Mag(i2c)
 
 while True:
     mag_x, mag_y, mag_z = sensor.magnetic
-    print('{0:10.3f} {1:10.3f} {2:10.3f}'.format(mag_x, mag_y, mag_z))
+    print("{0:10.3f} {1:10.3f} {2:10.3f}".format(mag_x, mag_y, mag_z))
