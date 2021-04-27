@@ -23,6 +23,11 @@ Table of Contents
 .. toctree::
     :caption: Tutorials
 
+    Adafruit LIS3DH Triple-Axis Accelerometer Breakout Learning Guide <https://learn.adafruit.com/adafruit-circuit-playground-express>
+
+    Circuit Playground Express Learning Guide <https://learn.adafruit.com/adafruit-circuit-playground-express>
+
+
 .. toctree::
     :caption: Related Products
 
