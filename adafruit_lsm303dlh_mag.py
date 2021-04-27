@@ -89,7 +89,31 @@ _GAUSS_TO_MICROTESLA = 100.0  # Gauss to micro-Tesla multiplier
 class LSM303DLH_Mag:
     """Driver for the Driver for the LSM303DLH's 'magnetometer.
 
-    :param busio.I2C i2c_bus: The I2C bus the LSM303DLH is connected to.
+    :param ~busio.I2C i2c: The I2C bus the device is connected to.
+
+
+    **Quickstart: Importing and using the device**
+
+        Here is an example of using the :class:`LSM303DLH_Mag` class.
+        First you will need to import the libraries to use the sensor
+
+        .. code-block:: python
+
+            import board
+            import adafruit_lsm303dlh_mag
+
+        Once this is done you can define your `board.I2C` object and define your sensor object
+
+        .. code-block:: python
+
+            i2c = board.I2C()  # uses board.SCL and board.SDA
+            sensor = adafruit_lsm303dlh_mag.LSM303DLH_Mag(i2c)
+
+        Now you have access to the :attr:`magnetic` attribute
+
+        .. code-block:: python
+
+            mag_x, mag_y, mag_z = sensor.magnetic
 
     """
 

@@ -4,10 +4,9 @@
 """ Read data from the magnetometer and print it out, ASAP! """
 
 import board
-import busio
 import adafruit_lsm303dlh_mag
 
-i2c = busio.I2C(board.SCL, board.SDA)
+i2c = board.I2C()  # uses board.SCL and board.SDA
 sensor = adafruit_lsm303dlh_mag.LSM303DLH_Mag(i2c)
 
 while True:
