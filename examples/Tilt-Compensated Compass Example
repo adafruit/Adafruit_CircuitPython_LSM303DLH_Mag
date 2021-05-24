@@ -1,4 +1,6 @@
 ## Tilt Compensated Compass using Accelerometer and Magnetometer
+# SPDX-FileCopyrightText: 2021 Alex Dew
+# SPDX-License-Identifier: MIT
 
 # # Equations from st manual, "Computing tilt measurement and tilt-compensated eCompass" by Andrea Vitali
    # https://www.st.com/resource/en/design_tip/dm00269987-computing-tilt-measurement-and-tiltcompensated-ecompass-stmicroelectronics.pdf
