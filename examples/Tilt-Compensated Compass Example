@@ -35,7 +35,7 @@ offmag = (-10.8, 4.875, -54.225)
 offaccel = (-0.994392, -0.305969, 0.382458)
 
 
-i2c = busio.I2C(board.SCL, board.SDA)
+i2c = board.I2C()  # uses board.SCL and board.SDA. Equivalent to the older method: i2c = busio.I2C(board.SCL, board.SDA)
 sensoraccel = adafruit_lsm303_accel.LSM303_Accel(i2c)
 sensormag = adafruit_lis2mdl.LIS2MDL(i2c)
 
