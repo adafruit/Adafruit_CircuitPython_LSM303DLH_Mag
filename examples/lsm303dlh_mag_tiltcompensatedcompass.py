@@ -1,4 +1,4 @@
-# Tilt Compensated Compass using Accelerometer and Magnetometer 
+# Tilt Compensated Compass using Accelerometer and Magnetometer
 # SPDX-FileCopyrightText: 2021 Alex Dew
 # SPDX-License-Identifier: MIT
 
@@ -12,7 +12,7 @@
 # for Theta (Pitch)
 # Gz2 = Gy * Sin( Phi ) + Gz * Cos( Phi )
 # Theta = Atan(-Gx / Gz2)
-   
+
 # for Psi or "Yaw" (The Tilt Compensated Heading) # Bx,By,Bz are magnetometer readings
 # By2 = Bz * Sin( Phi ) – By * Cos( Phi )
 # Bz2 = By * Sin( Phi ) + Bz * Cos( Phi )
@@ -39,6 +39,7 @@ i2c = board.I2C()  # uses board.SCL and board.SDA
 sensoraccel = adafruit_lsm303_accel.LSM303_Accel(i2c)
 sensormag = adafruit_lis2mdl.LIS2MDL(i2c)
 
+
 def vector_2_degrees(x, y):
     angle = degrees(atan2(y, x))
     if angle < 0:
@@ -47,7 +48,7 @@ def vector_2_degrees(x, y):
 
 
 while True:
-    Xm,Ym,Zm = sensormag.magnetic
+    Xm, Ym, Zm = sensormag.magnetic
     Xm = Xm - offmag[0]
     Ym = Ym - offmag[1]
     Zm = Zm - offmag[2]
@@ -57,20 +58,20 @@ while True:
     az = az - offaccel[2]
 
     # tilt compensation equations
-    stableZ = az + (ax*0.01)
+    stableZ = az + (ax * 0.01)
     phi = atan2(ay, stableZ)
 
     Gz2 = ay * sin(phi) + az * cos(phi)
-    theta = atan(-ax/ Gz2)
+    theta = atan(-ax / Gz2)
 
     By2 = Zm * sin(phi) - Ym * cos(phi)
     Bz2 = Ym * sin(phi) + Zm * cos(phi)
     Bx3 = Xm * cos(theta) + Bz2 * sin(theta)
-    
+
     Psi = vector_2_degrees(Bx3, By2)
 
     print("Yaw Heading: ", "{:.0f}".format(Psi))
-    
+
     # Offset declination for your general location
     # negative 5 degrees declination in FL  ## find yours @ magnetic-declination.com
     withdecl = Psi - 5
@@ -78,5 +79,4 @@ while True:
         withdecl += 360
     print("Yaw with Declination: ", "{:.0f}".format(withdecl))
 
-
-    time.sleep(.5)
+    time.sleep(0.5)
