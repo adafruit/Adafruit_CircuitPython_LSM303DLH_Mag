@@ -24,3 +24,13 @@ Magnetic compass example
 .. literalinclude:: ../examples/lsm303dlh_mag_compass.py
     :caption: examples/lsm303dlh_mag_compass.py
     :linenos:
+    
+
+Tilt-Compensated Compass Example
+---------------
+
+Tilt-compensated example
+
+.. literalinclude:: ../examples/lsm303dlh_mag_tiltcompensatedcompass.py
+    :caption: examples/lsm303dlh_mag_tiltcompensatedcompass.py
+    :linenos:
