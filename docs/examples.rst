@@ -27,7 +27,7 @@ Magnetic compass example
     
 
 Tilt-Compensated Compass Example
----------------
+---------------------------------------------------
 
 Tilt-compensated example
 
