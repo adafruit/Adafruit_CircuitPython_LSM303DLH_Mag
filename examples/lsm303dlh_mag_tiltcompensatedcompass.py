@@ -1,4 +1,3 @@
-# Tilt Compensated Compass using Accelerometer and Magnetometer
 # SPDX-FileCopyrightText: 2021 Alex Dew
 # SPDX-License-Identifier: MIT
 
