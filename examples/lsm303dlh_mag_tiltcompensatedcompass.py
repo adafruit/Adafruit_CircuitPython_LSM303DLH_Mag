@@ -26,7 +26,6 @@
 
 import board
 import busio
-from digitalio import DigitalInOut
 import re
 import time
 from math import atan, atan2, degrees, cos, sin
