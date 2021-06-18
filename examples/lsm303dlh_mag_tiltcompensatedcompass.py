@@ -25,7 +25,6 @@
 ###############################################
 
 import board
-import busio
 import re
 import time
 from math import atan, atan2, degrees, cos, sin
