@@ -1,5 +1,6 @@
 # SPDX-FileCopyrightText: 2021 Alex Dew
 # SPDX-License-Identifier: MIT
+# Tilt Compensated Compass using Accelerometer and Magnetometer
 
 # The equations below are the ones used in code
 # Equations from st manual:
