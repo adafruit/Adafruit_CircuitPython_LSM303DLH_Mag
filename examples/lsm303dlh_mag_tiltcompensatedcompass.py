@@ -29,7 +29,7 @@ import busio
 from digitalio import DigitalInOut
 import re
 import time
-from math import atan, atan2, degrees, pi, cos, sin
+from math import atan, atan2, degrees, cos, sin
 import adafruit_lsm303_accel
 import adafruit_lis2mdl
 import adafruit_lsm303dlh_mag
