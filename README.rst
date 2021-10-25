@@ -72,6 +72,11 @@ Usage Example
         time.sleep(1.0)
 
 
+Documentation
+=============
+
+API documentation for this library can be found on `Read the Docs <https://circuitpython.readthedocs.io/projects/lsm303dlh-mag/en/latest/>`_.
+
 Contributing
 ============
 
