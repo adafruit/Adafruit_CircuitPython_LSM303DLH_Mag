@@ -29,10 +29,8 @@ Implementation Notes
   https://github.com/adafruit/Adafruit_CircuitPython_BusDevice
 """
 
-try:
-    import struct
-except ImportError:
-    import ustruct as struct
+import struct
+
 from micropython import const
 from adafruit_bus_device.i2c_device import I2CDevice
 
