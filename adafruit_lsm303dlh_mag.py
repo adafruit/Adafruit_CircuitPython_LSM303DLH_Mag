@@ -48,10 +48,10 @@ _REG_MAG_CRB_REG_M = const(0x01)
 _REG_MAG_MR_REG_M = const(0x02)
 _REG_MAG_OUT_X_H_M = const(0x03)
 _REG_MAG_OUT_X_L_M = const(0x04)
-_REG_MAG_OUT_Z_H_M = const(0x05)
-_REG_MAG_OUT_Z_L_M = const(0x06)
-_REG_MAG_OUT_Y_H_M = const(0x07)
-_REG_MAG_OUT_Y_L_M = const(0x08)
+_REG_MAG_OUT_Y_H_M = const(0x05)
+_REG_MAG_OUT_Y_L_M = const(0x06)
+_REG_MAG_OUT_Z_H_M = const(0x07)
+_REG_MAG_OUT_Z_L_M = const(0x08)
 _REG_MAG_SR_REG_M = const(0x09)
 _REG_MAG_IRA_REG_M = const(0x0A)
 _REG_MAG_IRB_REG_M = const(0x0B)
@@ -139,7 +139,7 @@ class LSM303DLH_Mag:
         """
         self._read_bytes(self._mag_device, _REG_MAG_OUT_X_H_M, 6, self._BUFFER)
         raw_values = struct.unpack_from(">hhh", self._BUFFER[0:6])
-        return (raw_values[0], raw_values[2], raw_values[1])
+        return (raw_values[0], raw_values[1], raw_values[2])
 
     @property
     def magnetic(self):
