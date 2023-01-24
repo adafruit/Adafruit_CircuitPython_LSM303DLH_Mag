@@ -20,6 +20,9 @@ Introduction
 
 Adafruit CircuitPython module for the LSM303DLH's 3-axis magnetometer
 
+Note that this is specifically intended for the LSM303DLHC, as opposed to the
+aLSM303DLH, which has the magnetic Y and Z orientations swapped.
+
 Dependencies
 =============
 This driver depends on:
