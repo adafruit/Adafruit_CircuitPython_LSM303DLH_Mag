@@ -33,6 +33,11 @@ try:
     import struct
 except ImportError:
     import ustruct as struct
+try:
+    from busio import I2C
+    from typing import Tuple
+except ImportError:
+    pass
 from micropython import const
 from adafruit_bus_device.i2c_device import I2CDevice
 
@@ -122,7 +127,7 @@ class LSM303DLH_Mag:
     # thread safe!
     _BUFFER = bytearray(6)
 
-    def __init__(self, i2c):
+    def __init__(self, i2c: I2C) -> None:
         self._mag_device = I2CDevice(i2c, _ADDRESS_MAG)
         self._write_u8(
             self._mag_device, _REG_MAG_MR_REG_M, 0x00
@@ -133,7 +138,7 @@ class LSM303DLH_Mag:
         self._mag_rate = MAGRATE_0_7
 
     @property
-    def _raw_magnetic(self):
+    def _raw_magnetic(self) -> Tuple[int, int, int]:
         """The raw magnetometer sensor values.
         A 3-tuple of X, Y, Z axis values that are 16-bit signed integers.
         """
@@ -142,7 +147,7 @@ class LSM303DLH_Mag:
         return (raw_values[0], raw_values[2], raw_values[1])
 
     @property
-    def magnetic(self):
+    def magnetic(self) -> Tuple[float, float, float]:
         """The processed magnetometer sensor values.
         A 3-tuple of X, Y, Z axis values in microteslas that are signed floats.
         """
@@ -154,12 +159,12 @@ class LSM303DLH_Mag:
         )
 
     @property
-    def mag_gain(self):
+    def mag_gain(self) -> int:
         """The magnetometer's gain."""
         return self._mag_gain
 
     @mag_gain.setter
-    def mag_gain(self, value):
+    def mag_gain(self, value: int) -> None:
         assert value in (
             MAGGAIN_1_3,
             MAGGAIN_1_9,
@@ -195,12 +200,12 @@ class LSM303DLH_Mag:
             self._lsm303mag_gauss_lsb_z = 205.0
 
     @property
-    def mag_rate(self):
+    def mag_rate(self) -> int:
         """The magnetometer update rate."""
         return self._mag_rate
 
     @mag_rate.setter
-    def mag_rate(self, value):
+    def mag_rate(self, value: int) -> None:
         assert value in (
             MAGRATE_0_7,
             MAGRATE_1_5,
@@ -216,20 +221,22 @@ class LSM303DLH_Mag:
         reg_m = ((value & 0x07) << 2) & 0xFF
         self._write_u8(self._mag_device, _REG_MAG_CRA_REG_M, reg_m)
 
-    def _read_u8(self, device, address):
+    def _read_u8(self, device: I2CDevice, address: int) -> None:
         with device as i2c:
             self._BUFFER[0] = address & 0xFF
             i2c.write_then_readinto(self._BUFFER, self._BUFFER, out_end=1, in_end=1)
         return self._BUFFER[0]
 
-    def _write_u8(self, device, address, val):
+    def _write_u8(self, device: I2CDevice, address: int, val: int) -> None:
         with device as i2c:
             self._BUFFER[0] = address & 0xFF
             self._BUFFER[1] = val & 0xFF
             i2c.write(self._BUFFER, end=2)
 
     @staticmethod
-    def _read_bytes(device, address, count, buf):
+    def _read_bytes(
+        device: I2CDevice, address: int, count: int, buf: bytearray
+    ) -> None:
         with device as i2c:
             buf[0] = address & 0xFF
             i2c.write_then_readinto(buf, buf, out_end=1, in_end=count)
