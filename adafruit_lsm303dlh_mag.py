@@ -29,13 +29,14 @@ Implementation Notes
   https://github.com/adafruit/Adafruit_CircuitPython_BusDevice
 """
 
+from typing import Tuple
+
 try:
     import struct
 except ImportError:
     import ustruct as struct
 try:
     from busio import I2C
-    from typing import Tuple
 except ImportError:
     pass
 from micropython import const
@@ -221,7 +222,7 @@ class LSM303DLH_Mag:
         reg_m = ((value & 0x07) << 2) & 0xFF
         self._write_u8(self._mag_device, _REG_MAG_CRA_REG_M, reg_m)
 
-    def _read_u8(self, device: I2CDevice, address: int) -> None:
+    def _read_u8(self, device: I2CDevice, address: int) -> int:
         with device as i2c:
             self._BUFFER[0] = address & 0xFF
             i2c.write_then_readinto(self._BUFFER, self._BUFFER, out_end=1, in_end=1)
