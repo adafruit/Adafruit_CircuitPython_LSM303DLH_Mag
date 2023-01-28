@@ -29,7 +29,11 @@ Implementation Notes
   https://github.com/adafruit/Adafruit_CircuitPython_BusDevice
 """
 
-from typing import Tuple
+try:
+    from typing import Tuple
+    from busio import I2C
+except ImportError:
+    pass
 
 try:
     import struct
