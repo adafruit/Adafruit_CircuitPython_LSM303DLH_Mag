@@ -42,10 +42,7 @@ try:
     import struct
 except ImportError:
     import ustruct as struct
-try:
-    from busio import I2C
-except ImportError:
-    pass
+
 from micropython import const
 from adafruit_bus_device.i2c_device import I2CDevice
 
