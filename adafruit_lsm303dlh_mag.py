@@ -34,6 +34,7 @@ Implementation Notes
 
 try:
     from typing import Tuple
+
     from busio import I2C
 except ImportError:
     pass
@@ -43,8 +44,8 @@ try:
 except ImportError:
     import ustruct as struct
 
-from micropython import const
 from adafruit_bus_device.i2c_device import I2CDevice
+from micropython import const
 
 __version__ = "0.0.0+auto.0"
 __repo__ = "https://github.com/adafruit/Adafruit_CircuitPython_LSM303DLH_Mag.git"
@@ -134,9 +135,7 @@ class LSM303DLH_Mag:
 
     def __init__(self, i2c: I2C) -> None:
         self._mag_device = I2CDevice(i2c, _ADDRESS_MAG)
-        self._write_u8(
-            self._mag_device, _REG_MAG_MR_REG_M, 0x00
-        )  # Enable the magnetometer
+        self._write_u8(self._mag_device, _REG_MAG_MR_REG_M, 0x00)  # Enable the magnetometer
         self._lsm303mag_gauss_lsb_xy = 1100.0
         self._lsm303mag_gauss_lsb_z = 980.0
         self._mag_gain = MAGGAIN_1_3
@@ -170,7 +169,7 @@ class LSM303DLH_Mag:
 
     @mag_gain.setter
     def mag_gain(self, value: int) -> None:
-        assert value in (
+        assert value in {
             MAGGAIN_1_3,
             MAGGAIN_1_9,
             MAGGAIN_2_5,
@@ -178,7 +177,7 @@ class LSM303DLH_Mag:
             MAGGAIN_4_7,
             MAGGAIN_5_6,
             MAGGAIN_8_1,
-        )
+        }
 
         self._mag_gain = value
         self._write_u8(self._mag_device, _REG_MAG_CRB_REG_M, self._mag_gain)
@@ -211,7 +210,7 @@ class LSM303DLH_Mag:
 
     @mag_rate.setter
     def mag_rate(self, value: int) -> None:
-        assert value in (
+        assert value in {
             MAGRATE_0_7,
             MAGRATE_1_5,
             MAGRATE_3_0,
@@ -220,7 +219,7 @@ class LSM303DLH_Mag:
             MAGRATE_30,
             MAGRATE_75,
             MAGRATE_220,
-        )
+        }
 
         self._mag_rate = value
         reg_m = ((value & 0x07) << 2) & 0xFF
@@ -239,9 +238,7 @@ class LSM303DLH_Mag:
             i2c.write(self._BUFFER, end=2)
 
     @staticmethod
-    def _read_bytes(
-        device: I2CDevice, address: int, count: int, buf: bytearray
-    ) -> None:
+    def _read_bytes(device: I2CDevice, address: int, count: int, buf: bytearray) -> None:
         with device as i2c:
             buf[0] = address & 0xFF
             i2c.write_then_readinto(buf, buf, out_end=1, in_end=count)
